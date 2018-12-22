@@ -3,8 +3,7 @@ import unittest
 class NumbersTest(unittest.TestCase):
 
     def test_equal(self):
-	i = 1 + 1
-        self.assertEqual(1 + 1, i)
+        self.assertEqual(1, 1)
 
 if __name__ == '__main__':
     unittest.main()
