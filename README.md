@@ -26,3 +26,4 @@ Host 10.156.0.*
   User gcp_appUser
   ProxyCommand ssh -W %h:%p  gcp_appUser@35.207.140.251
 
+## allow vpn connection for the whole world =\
