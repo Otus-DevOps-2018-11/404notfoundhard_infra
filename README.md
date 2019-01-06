@@ -4,8 +4,10 @@
 bastion_IP=35.207.140.251
 someinternalhost_IP=10.156.0.3
 
+
 testapp_IP=35.204.131.164
 testapp_port=9292
+
 ### one line connect
 ```
 ssh -i /home/user/.ssh/gcp_appUser.pub gcp_appUser@10.156.0.3 -o "proxycommand ssh -W %h:%p -i /home/user/.ssh/gcp_appUser.pub gcp_appUser@35.207.140.2"
@@ -33,6 +35,7 @@ Host 10.156.0.*
   User gcp_appUser
   ProxyCommand ssh -W %h:%p  gcp_appUser@35.207.140.251
 ```
+
 
 ## gcloud: create firewall rule
 ```
