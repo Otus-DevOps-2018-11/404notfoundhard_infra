@@ -10,5 +10,18 @@
             "ssh_username": "gcp_appUser",
             "machine_type": "f1-micro"
         }
+    ],
+    "provisioners": [
+    	{
+    		"type":"shell",
+    		"script": "scripts/install_ruby.sh",
+    		"execute_command": "sudo {{.Path}}"
+    	},
+
+    	{
+    		"type":"shell",
+    		"script": "scripts/install_mongodb.sh",
+    		"execute_command": "sudo {{.Path}}"
+    	}
     ]
 }
