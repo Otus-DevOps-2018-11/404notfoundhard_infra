@@ -1,0 +1,6 @@
+{
+			"project_id": "infra-404044",
+            "machine_type": "n1-standard-1",
+            "source_image_family": "ubuntu-1404-lts",
+            "ssh_username": "user"
+}
