@@ -99,4 +99,5 @@ gcloud compute project-info add-metadata --metadata-from-file ssh-keys=/path/to/
 Проблемы: 
  - усложнение кода terraform
  - вероятность появления различных инстансов
+
  
