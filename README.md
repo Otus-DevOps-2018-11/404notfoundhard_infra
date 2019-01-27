@@ -66,3 +66,36 @@ gcloud compute instances create reddit-app\
                                      --restart-on-failure \
                                      --metadata-from-file startup-script=/path/to/my/startup_script.sh
 ```
+## ДЗ№6
+###Опишите в коде терраформа добавление ssh ключа пользователя appuser1 в метаданные проекта. Выполните terraform apply и проверьте результат (публичный ключ можно брать пользователя appuser);  
+```
+  metadata {
+    ssh-keys = "user3:${file(var.public_key_path)}"
+    ssh-keys = "user2:${file(var.public_key_path)}"
+  }
+```
+доступ будет только у последнего, в данном случае "user2". 
+### Опишите в коде терраформа добавление ssh ключей нескольких пользователей в метаданные проекта (можно просто один и тот же публичный ключ, но с разными именами пользователей, например appuser1, appuser2 и т.д.). Выполните terraform apply и проверьте результат;  
+```
+  metadata {
+    ssh-keys = "user3:${file(var.public_key_path)} user2:${file(var.public_key_path)}"
+  }
+```
+доступ будет у всех перечисленных пользователей.
+### Добавьте в веб интерфейсе ssh ключ пользователю appuser_web в метаданные проекта. Выполните terraform apply и проверьте результат; 
+Если добавить пользователя в GCP console, то у него тоже есть доступ по ssh
+
+* так же возможно добавление ssh ключей с помощью gcloud, пример:
+```
+$ cat ssh-keys-file
+user3:ssh-rsa %pub_key_for_user3% user3
+user2:ssh-rsa %pub_key_for_user2% user2
+
+gcloud compute project-info add-metadata --metadata-from-file ssh-keys=/path/to/ssh-keys-files 
+```
+Но тут необходимо быть осторожным, потому что публичные ключи перезаписываются, так что если хотим сохранить старые публичные ключи, то они должны быть добавлены в этот файл.
+
+### Добавление еще одного ресурса без помощи "count"
+Проблемы: 
+ - усложнение кода terraform
+ - вероятность появления различных инстансов
