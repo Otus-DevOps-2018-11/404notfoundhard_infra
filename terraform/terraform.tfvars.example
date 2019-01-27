@@ -1,0 +1,8 @@
+project = "infra-222211"
+region = "us-west4"
+zone = "us-west4-b"
+public_key_path = "~/.ssh/gcp_appUser.pub"
+private_key_path = "~/.ssh/gcp_appUser"
+disk_image = "reddit-base"
+ssh-user="gcp_appUser"
+count = 2
