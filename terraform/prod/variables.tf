@@ -43,3 +43,8 @@ variable "db_disk_image" {
   description = "Disk image for reddit app"
   default     = "reddit-db-base"
 }
+
+variable "my_ip" {
+  description = "allow to connect from my network"
+  default     = "0.0.0.0/0"
+}

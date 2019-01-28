@@ -12,6 +12,7 @@ module "app" {
   ssh-user         = "${var.ssh-user}"
   private_key_path = "${var.private_key_path}"
   db-address       = "${module.db.db_internal_ip}"
+  my_ip            = "${var.my_ip}"
 }
 
 module "db" {

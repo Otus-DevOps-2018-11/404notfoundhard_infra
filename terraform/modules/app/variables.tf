@@ -23,3 +23,7 @@ variable "app_disk_image" {
 variable "db-address" {
   description = "internal IP address mongodb"
 }
+
+variable "my_ip" {
+  description = "allow to connect from my network"
+}

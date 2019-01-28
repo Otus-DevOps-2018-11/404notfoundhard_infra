@@ -33,7 +33,7 @@ resource "google_compute_instance" "app" {
   #   inline = [ "echo 'export DATABASE_URL=${var.db-address}' >> .bashrc"],
   # }
   provisioner "file" {
-    source      = "files/deploy.sh"
+    source      = "../modules/app/files/deploy.sh"
     destination = "/tmp/deploy.sh"
   }
 
@@ -55,6 +55,6 @@ resource "google_compute_firewall" "firewall_puma" {
     ports    = ["9292"]
   }
 
-  source_ranges = ["0.0.0.0/0"]
+  source_ranges = ["${var.my_ip}"]
   target_tags   = ["reddit-app"]
 }
