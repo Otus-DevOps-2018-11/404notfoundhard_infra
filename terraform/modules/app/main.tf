@@ -1,25 +1,21 @@
-provider "google" {
-  version = "1.4.0"
-  project = "${var.project}"
-  region  = "${var.region}"
-}
-
 resource "google_compute_instance" "app" {
-  name         = "reddit-app${count.index+1}"
+  name         = "reddit-app"
   machine_type = "g1-small"
   zone         = "${var.zone}"
-  tags         = ["reddit-app"]
-  count        = "${var.count}"
+  tags = ["reddit-app"]
 
   boot_disk {
     initialize_params {
-      image = "${var.disk_image}"
+      image = "${var.app_disk_image}"
     }
   }
 
   network_interface {
-    network       = "default"
-    access_config = {}
+    network = "default"
+
+    access_config = {
+      nat_ip = "${google_compute_address.app_ip.address}"
+    }
   }
 
   metadata {
@@ -33,18 +29,25 @@ resource "google_compute_instance" "app" {
     private_key = "${file(var.private_key_path)}"
   }
 
+  # provisioner "remote-exec" {
+  #   inline = [ "echo 'export DATABASE_URL=${var.db-address}' >> .bashrc"],
+  # }
   provisioner "file" {
-    source      = "files/puma.service"
-    destination = "/tmp/puma.service"
+    source      = "files/deploy.sh"
+    destination = "/tmp/deploy.sh"
   }
 
   provisioner "remote-exec" {
-    script = "files/deploy.sh"
+    inline = ["chmod +x /tmp/deploy.sh","sudo /tmp/deploy.sh ${var.db-address}"]
   }
 }
 
+resource "google_compute_address" "app_ip" {
+  name = "reddit-app-ip"
+}
+
 resource "google_compute_firewall" "firewall_puma" {
-  name    = "allow-puma-default"
+  name    = "default-allow-puma"
   network = "default"
 
   allow {

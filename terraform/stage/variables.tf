@@ -32,3 +32,13 @@ variable "count" {
   description = "counter"
   default     = 1
 }
+
+variable "app_disk_image" {
+  description = "Disk image for reddit app"
+  default     = "reddit-ruby-base"
+}
+
+variable "db_disk_image" {
+  description = "Disk image for reddit app"
+  default     = "reddit-db-base"
+}
