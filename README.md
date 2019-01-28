@@ -100,4 +100,18 @@ gcloud compute project-info add-metadata --metadata-from-file ssh-keys=/path/to/
  - усложнение кода terraform
  - вероятность появления различных инстансов
 
+## ДЗ№7
+для выполнения задания с "*":
+ - при повторном выполнении(в другом месте) terraform не дал запустить сборку/удаление инстансов. 
+для выполения задания с "**":
+ 1) Мы разрешаем mongod слушать local ip address, сделано это с помощью provisioner "remote-exec" с inline типом, 
+    с передачей туда переменной, пример:
+    ```
+    "sudo sed -i 's/bindIp: 127.0.0.1/bindIp: ${self.network_interface.0.address}/' /etc/mongod.conf"
+    ```
+ 2) Несколько изменили deploy.sh скрипт,в unit puma.service добавлена опция "Environment", 
+    куда мы передаем в перменную окружения удаленный IP адрес mongod. Сделано это с помощи неявной зависимости.
+    ```
+    inline = ["chmod +x /tmp/deploy.sh", "sudo /tmp/deploy.sh ${var.db-address}"]
+    ```
  
