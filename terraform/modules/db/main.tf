@@ -2,7 +2,7 @@ resource "google_compute_instance" "db" {
   name         = "reddit-db"
   machine_type = "g1-small"
   zone         = "${var.zone}"
-  tags = ["reddit-db"]
+  tags         = ["reddit-db"]
 
   boot_disk {
     initialize_params {
@@ -25,10 +25,12 @@ resource "google_compute_instance" "db" {
     agent       = false
     private_key = "${file(var.private_key_path)}"
   }
+
   provisioner "remote-exec" {
     inline = ["sudo service mongod stop",
-              "sudo sed -i 's/bindIp: 127.0.0.1/bindIp: ${self.network_interface.0.address}/' /etc/mongod.conf",
-              "sudo service mongod start"]
+      "sudo sed -i 's/bindIp: 127.0.0.1/bindIp: ${self.network_interface.0.address}/' /etc/mongod.conf",
+      "sudo service mongod start",
+    ]
   }
 }
 

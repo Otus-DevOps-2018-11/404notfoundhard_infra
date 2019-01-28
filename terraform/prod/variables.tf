@@ -9,7 +9,7 @@ variable region {
 
 variable ssh-user {
   description = "user for connection"
-  default = "gcp_appUser"
+  default     = "gcp_appUser"
 }
 
 variable zone {
@@ -43,4 +43,3 @@ variable "db_disk_image" {
   description = "Disk image for reddit app"
   default     = "reddit-db-base"
 }
-

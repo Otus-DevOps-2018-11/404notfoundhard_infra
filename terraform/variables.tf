@@ -11,4 +11,3 @@ variable zone {
   description = "Zone, if var is null = us-east4-b"
   default     = "us-east4-c"
 }
-

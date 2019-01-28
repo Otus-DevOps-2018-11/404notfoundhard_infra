@@ -1,5 +1,5 @@
 terraform {
-    backend "gcs" {
-        bucket = "storage-tfstate-stage"
-    }
+  backend "gcs" {
+    bucket = "storage-tfstate-stage"
+  }
 }
