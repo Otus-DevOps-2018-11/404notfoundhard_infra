@@ -120,9 +120,9 @@ gcloud compute project-info add-metadata --metadata-from-file ssh-keys=/path/to/
     ```
 
  ## ДЗ№8
- - "Теперь выполните ansible app -m command -a 'rm -rf
-~/reddit' и проверьте еще раз выполнение плейбука. Что
+ - "Теперь выполните ansible app -m command -a 'rm -rf ~/reddit' и проверьте еще раз выполнение плейбука. Что
 изменилось и почему?"
+
 Изменения применились, так как ansible не увидел данной папки и наличия в ней каталога".git". Но если удалить только каталог ".git", то playbook -завершится с ошибкой.
 
 ### Для задания со "*":
