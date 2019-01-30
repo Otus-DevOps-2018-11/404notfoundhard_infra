@@ -11,6 +11,8 @@ module "app" {
   app_disk_image   = "${var.app_disk_image}"
   ssh-user         = "${var.ssh-user}"
   private_key_path = "${var.private_key_path}"
+  db-address       = "${module.db.db_internal_ip}"
+  my_ip            = "${var.my_ip}"
 }
 
 module "db" {
@@ -24,5 +26,5 @@ module "db" {
 
 module "vpc" {
   source        = "../modules/vpc"
-  source_ranges = ["0.0.0.0"]
+  source_ranges = ["0.0.0.0/0"]
 }

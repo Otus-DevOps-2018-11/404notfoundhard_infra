@@ -114,4 +114,28 @@ gcloud compute project-info add-metadata --metadata-from-file ssh-keys=/path/to/
     ```
     inline = ["chmod +x /tmp/deploy.sh", "sudo /tmp/deploy.sh ${var.db-address}"]
     ```
- 
+ ## ДЗ№8
+ - "Теперь выполните ansible app -m command -a 'rm -rf
+~/reddit' и проверьте еще раз выполнение плейбука. Что
+изменилось и почему?"
+Изменения применились, так как ansible не увидел данной папки и наличия в ней каталога".git". Но если удалить только каталог ".git", то playbook -завершится с ошибкой.
+
+### Для задания со "*":
+Добавил в ansible.cfg, :
+```
+[defaults]
+inventory = ./very_difficult_script.sh
+...
+...
+[inventory]
+enable_plugins = script, host_list, yaml, ini
+```
+Заметил что очередность параметров влияет на преимущество в исполнении, то есть в данном случае  если ансибл успешно получит inventory "файл" из скрипта, то остальные варианты не будут рассматриваться.
+
+скрипт "very_difficult_script.sh":
+```
+#!/bin/bash
+
+cat inventory.json
+
+```
