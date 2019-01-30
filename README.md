@@ -139,3 +139,4 @@ enable_plugins = script, host_list, yaml, ini
 cat inventory.json
 
 ```
+
