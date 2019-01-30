@@ -4,8 +4,10 @@
 bastion_IP=35.207.140.251
 someinternalhost_IP=10.156.0.3
 
+
 testapp_IP=35.204.131.164
 testapp_port=9292
+
 ### one line connect
 ```
 ssh -i /home/user/.ssh/gcp_appUser.pub gcp_appUser@10.156.0.3 -o "proxycommand ssh -W %h:%p -i /home/user/.ssh/gcp_appUser.pub gcp_appUser@35.207.140.2"
@@ -33,6 +35,7 @@ Host 10.156.0.*
   User gcp_appUser
   ProxyCommand ssh -W %h:%p  gcp_appUser@35.207.140.251
 ```
+
 
 ## gcloud: create firewall rule
 ```
@@ -66,6 +69,7 @@ gcloud compute instances create reddit-app\
                                      --restart-on-failure \
                                      --metadata-from-file startup-script=/path/to/my/startup_script.sh
 ```
+
 ## ДЗ№6
 ###Опишите в коде терраформа добавление ssh ключа пользователя appuser1 в метаданные проекта. Выполните terraform apply и проверьте результат (публичный ключ можно брать пользователя appuser);  
 ```
@@ -114,4 +118,29 @@ gcloud compute project-info add-metadata --metadata-from-file ssh-keys=/path/to/
     ```
     inline = ["chmod +x /tmp/deploy.sh", "sudo /tmp/deploy.sh ${var.db-address}"]
     ```
- 
+
+ ## ДЗ№8
+ - "Теперь выполните ansible app -m command -a 'rm -rf
+~/reddit' и проверьте еще раз выполнение плейбука. Что
+изменилось и почему?"
+Изменения применились, так как ansible не увидел данной папки и наличия в ней каталога".git". Но если удалить только каталог ".git", то playbook -завершится с ошибкой.
+
+### Для задания со "*":
+Добавил в ansible.cfg, :
+```
+[defaults]
+inventory = ./very_difficult_script.sh
+...
+...
+[inventory]
+enable_plugins = script, host_list, yaml, ini
+```
+Заметил что очередность параметров влияет на преимущество в исполнении, то есть в данном случае  если ансибл успешно получит inventory "файл" из скрипта, то остальные варианты не будут рассматриваться.
+
+скрипт "very_difficult_script.sh":
+```
+#!/bin/bash
+
+cat inventory.json
+
+```
