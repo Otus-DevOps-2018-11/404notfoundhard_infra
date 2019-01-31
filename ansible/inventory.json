@@ -1,10 +1,6 @@
 {
-	"app": {
-				"ansible_host": "35.205.134.250"
-
-	},
-	"db": {
-				"ansible_host": "35.187.47.113"
-	}
+	"app":{ "children": [ "appserver" ]},
+	"db":{ "children": [ "dbserver" ]},
+	"appserver": { "hosts": ["35.205.134.250"] },
+	"dbserver": { "hosts": ["35.187.47.113"] }
 }
-
