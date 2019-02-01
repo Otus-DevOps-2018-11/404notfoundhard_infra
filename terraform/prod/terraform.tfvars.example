@@ -1,0 +1,11 @@
+project = "infra-201811"
+zone = "europe-west1-c"
+region = "europe-west1"
+public_key_path = "~/.ssh/appuser.pub"
+private_key_path = "~/.ssh/appuser"
+disk_image = "reddit-base"
+ssh-user="gcp_appUser"
+count = 1
+db_disk_image = "reddit-db-base"
+app_disk_image = "reddit-ruby-base"
+my_ip = "212.164.65.132"
