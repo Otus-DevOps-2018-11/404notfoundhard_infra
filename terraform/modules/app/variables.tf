@@ -1,12 +1,3 @@
-variable project {
-  description = "project id"
-}
-
-variable region {
-  description = "Region"
-  default     = "europe-west1"
-}
-
 variable ssh-user {
   description = "user for connection"
 }
@@ -24,11 +15,15 @@ variable "private_key_path" {
   description = "Path to the private key used for provision"
 }
 
-variable disk_image {
-  description = "Disk image"
+variable "app_disk_image" {
+  description = "Disk image for reddit app"
+  default     = "reddit-ruby-base"
 }
 
-variable "count" {
-  description = "counter"
-  default     = 1
+variable "db-address" {
+  description = "internal IP address mongodb"
+}
+
+variable "my_ip" {
+  description = "allow to connect from my network"
 }

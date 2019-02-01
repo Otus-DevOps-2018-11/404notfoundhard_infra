@@ -1,0 +1,26 @@
+{
+    "builders": [
+        {
+            "type": "googlecompute",
+            "project_id": "{{ user `project_id` }}",
+            "image_name": "reddit-ruby-base-{{timestamp}}",
+            "machine_type": "{{ user `machine_type` }}",
+            "source_image_family": "{{ user `source_image_family` }}",
+            "image_family": "reddit-ruby-base",
+            "zone": "europe-west1-b",
+            "ssh_username": "{{user `ssh_username`}}",
+            "image_description": "Ubuntu 16.04 for reddit app. Ruby and some gems preinstall. Created on {{timestamp}}",
+            "disk_type":"pd-standard",
+            "disk_size":12,
+            "tags":"puma-server",
+            "network":"default"
+        }
+    ],
+    "provisioners": [
+    	{
+    		"type":"shell",
+    		"script": "scripts/install_ruby.sh",
+    		"execute_command": "sudo {{.Path}}"
+    	}
+    ]
+}

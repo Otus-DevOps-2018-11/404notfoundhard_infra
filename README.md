@@ -103,4 +103,45 @@ gcloud compute project-info add-metadata --metadata-from-file ssh-keys=/path/to/
 Проблемы: 
  - усложнение кода terraform
  - вероятность появления различных инстансов
- 
+
+## ДЗ№7
+для выполнения задания с "*":
+ - при повторном выполнении(в другом месте) terraform не дал запустить сборку/удаление инстансов. 
+для выполения задания с "**":
+ 1) Мы разрешаем mongod слушать local ip address, сделано это с помощью provisioner "remote-exec" с inline типом, 
+    с передачей туда переменной, пример:
+    ```
+    "sudo sed -i 's/bindIp: 127.0.0.1/bindIp: ${self.network_interface.0.address}/' /etc/mongod.conf"
+    ```
+ 2) Несколько изменили deploy.sh скрипт,в unit puma.service добавлена опция "Environment", 
+    куда мы передаем в перменную окружения удаленный IP адрес mongod. Сделано это с помощи неявной зависимости.
+    ```
+    inline = ["chmod +x /tmp/deploy.sh", "sudo /tmp/deploy.sh ${var.db-address}"]
+    ```
+
+ ## ДЗ№8
+ - "Теперь выполните ansible app -m command -a 'rm -rf
+~/reddit' и проверьте еще раз выполнение плейбука. Что
+изменилось и почему?"
+Изменения применились, так как ansible не увидел данной папки и наличия в ней каталога".git". Но если удалить только каталог ".git", то playbook -завершится с ошибкой.
+
+### Для задания со "*":
+Добавил в ansible.cfg, :
+```
+[defaults]
+inventory = ./very_difficult_script.sh
+...
+...
+[inventory]
+enable_plugins = script, host_list, yaml, ini
+```
+Заметил что очередность параметров влияет на преимущество в исполнении, то есть в данном случае  если ансибл успешно получит inventory "файл" из скрипта, то остальные варианты не будут рассматриваться.
+
+скрипт "very_difficult_script.sh":
+```
+#!/bin/bash
+
+cat inventory.json
+
+```
+
