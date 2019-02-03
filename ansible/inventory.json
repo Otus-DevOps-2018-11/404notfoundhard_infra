@@ -1,6 +1,6 @@
 {
 	"app":{ "children": [ "appserver" ]},
 	"db":{ "children": [ "dbserver" ]},
-	"appserver": { "hosts": ["35.205.134.250"] },
-	"dbserver": { "hosts": ["35.187.47.113"] }
+	"appserver": { "hosts": ["35.195.230.15"] },
+	"dbserver": { "hosts": ["34.76.252.220"] }
 }
