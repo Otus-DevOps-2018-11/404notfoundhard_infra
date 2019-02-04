@@ -4,4 +4,6 @@
 *.tfvars
 .terraform/
 .retry
+.vscode
+service-account.json
 
