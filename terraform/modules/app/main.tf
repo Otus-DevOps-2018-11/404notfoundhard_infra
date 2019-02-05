@@ -29,17 +29,14 @@ resource "google_compute_instance" "app" {
     private_key = "${file(var.private_key_path)}"
   }
 
-  # provisioner "remote-exec" {
-  #   inline = [ "echo 'export DATABASE_URL=${var.db-address}' >> .bashrc"],
+  # provisioner "file" {
+  #   source      = "../modules/app/files/deploy.sh"
+  #   destination = "/tmp/deploy.sh"
   # }
-  provisioner "file" {
-    source      = "../modules/app/files/deploy.sh"
-    destination = "/tmp/deploy.sh"
-  }
 
-  provisioner "remote-exec" {
-    inline = ["chmod +x /tmp/deploy.sh", "sudo /tmp/deploy.sh ${var.db-address}"]
-  }
+  # provisioner "remote-exec" {
+  #   inline = ["chmod +x /tmp/deploy.sh", "sudo /tmp/deploy.sh ${var.db-address}"]
+  # }
 }
 
 resource "google_compute_address" "app_ip" {
