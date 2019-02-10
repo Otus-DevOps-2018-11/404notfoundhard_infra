@@ -48,3 +48,14 @@ variable "my_ip" {
   description = "allow to connect from my network"
   default     = "0.0.0.0/0"
 }
+
+variable "env_tag" {
+  description = "service tag application"
+  default = "prod"
+}
+
+variable "issethttp" {
+  description = "set http-server tag if needed"
+  default = ""
+}
+

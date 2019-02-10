@@ -19,3 +19,8 @@ variable "db_disk_image" {
   description = "Disk image for reddit app"
   default     = "reddit-db-base"
 }
+
+variable "env_tag" {
+  description = "service tag application"
+}
+
