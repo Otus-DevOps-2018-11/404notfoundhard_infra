@@ -8,10 +8,15 @@
         dest: '/home/gcp_appUser/reddit'
         version: monolith
       notify: reload puma
+
     - name: Bundle install
       bundler:
-        state: present
+        state: absent
         chdir: '/home/gcp_appUser/reddit'
+        register: task_result
+        until: task_result is success
+        retries: 10
+        delay: 2
 
   handlers:
   - name: reload puma
