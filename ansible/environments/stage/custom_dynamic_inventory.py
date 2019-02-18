@@ -4,13 +4,7 @@ import json
 import commands
 
 #with best practices :)
-hardcoded_file_struct = '{"app":{"children":["appserver"]},\
-                          "db":{"children":["dbserver"]},\
-                          "appserver":{\
-                              "hosts":["127.0.0.1"],\
-                              "vars":{"db_host": "127.0.0.2"}},\
-                          "dbserver":{\
-                              "hosts":["127.0.0.3"]}}'
+hardcoded_file_struct = '{"app":{"children":["appserver"]}, "db":{"children":["dbserver"]}, "appserver":{ "hosts":["127.0.0.1"], "vars":{"db_host": "127.0.0.2"}}, "dbserver":{"hosts":["127.0.0.3"]}}'
 
 cmd = 'gcloud compute instances list --format="json(name,EXTERNAL_IP,INTERNAL_IP)"'
 gcloud_json_raw_output = commands.getstatusoutput(cmd)[1]
