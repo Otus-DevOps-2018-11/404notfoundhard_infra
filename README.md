@@ -1,6 +1,8 @@
 # 404notfoundhard_infra
 404notfoundhard Infra repository
 
+[![Build Status](https://travis-ci.com/Otus-DevOps-2018-11/404notfoundhard_infra.svg?branch=master)](https://travis-ci.com/Otus-DevOps-2018-11/404notfoundhard_infra)
+
 bastion_IP=35.207.140.251
 someinternalhost_IP=10.156.0.3
 
