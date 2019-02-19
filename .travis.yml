@@ -16,14 +16,18 @@ script:
   - ls -la packer/
   - /tmp/packer validate -var-file=packer/variables.json.example packer/app.json
   - /tmp/packer validate -var-file=packer/variables.json.example packer/db.json
-  - /tmp/terraform get terraform/prod
-  - /tmp/terraform init terraform/prod
-  - /tmp/terraform validate terraform/prod
-  - /tmp/tflint --deep terraform/prod
-  - /tmp/terraform get terraform/stage
-  - /tmp/terraform init terraform/stage
-  - /tmp/terraform validate terraform/stage
-  - /tmp/tflint --deep terraform/stage
+  - cd terraform/prod
+  - cp terraform.tfvars.example terraform.tfvars
+  - /tmp/terraform get 
+  - /tmp/terraform init 
+  - /tmp/terraform validate 
+  - /tmp/tflint --deep 
+  - cd ../stage
+  - cp terraform.tfvars.example terraform.tfvars
+  - /tmp/terraform get 
+  - /tmp/terraform init 
+  - /tmp/terraform validate stage
+  - /tmp/tflint --deep 
   - ansible-lint ansible/playbooks/site.yml
 
 notifications:
