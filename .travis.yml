@@ -13,16 +13,16 @@ script:
   - unzip -o /tmp/packer.zip -d /tmp
   - unzip -o /tmp/terraform.zip -d /tmp
   - unzip -o /tmp/tflint.zip -d /tmp
-  - ls -la
+  - ls -la packer/
   - /tmp/packer validate -var-file=packer/variables.json packer/app.json
   - /tmp/packer validate -var-file=packer/variables.json packer/db.json
-  - terraform get terraform/prod
-  - terraform init terraform/prod
-  - terraform validate terraform/prod
+  - /tmp/terraform get terraform/prod
+  - /tmp/terraform init terraform/prod
+  - /tmp/terraform validate terraform/prod
   - /tmp/tflint --deep terraform/prod
-  - terraform get terraform/stage
-  - terraform init terraform/stage
-  - terraform validate terraform/stage
+  - /tmp/terraform get terraform/stage
+  - /tmp/terraform init terraform/stage
+  - /tmp/terraform validate terraform/stage
   - /tmp/tflint --deep terraform/stage
   - ansible-lint ansible/playbooks/site.yml
 
