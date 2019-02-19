@@ -28,6 +28,7 @@ script:
   - /tmp/terraform init
   - /tmp/terraform validate
   - /tmp/tflint --deep
+  - cd ../../
   - ansible-lint ansible/playbooks/site.yml
 
 notifications:
