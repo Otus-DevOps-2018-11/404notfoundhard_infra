@@ -8,3 +8,9 @@
 service-account.json
 jdauphant.nginx
 .pre-commit-config.yaml
+.vagrant/
+*.log
+*.pyc
+.molecule
+.cache
+.pytest_cache
