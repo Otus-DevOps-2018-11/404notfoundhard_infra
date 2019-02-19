@@ -13,21 +13,21 @@ script:
   - unzip -o /tmp/packer.zip -d /tmp
   - unzip -o /tmp/terraform.zip -d /tmp
   - unzip -o /tmp/tflint.zip -d /tmp
-  - ls -la packer/
+  - ssh-keygen -f ~/.ssh/appuser -q -N "
   - /tmp/packer validate -var-file=packer/variables.json.example packer/app.json
   - /tmp/packer validate -var-file=packer/variables.json.example packer/db.json
   - cd terraform/prod
   - cp terraform.tfvars.example terraform.tfvars
-  - /tmp/terraform get 
-  - /tmp/terraform init 
-  - /tmp/terraform validate 
-  - /tmp/tflint --deep 
+  - /tmp/terraform get
+  - /tmp/terraform init
+  - /tmp/terraform validate
+  - /tmp/tflint --deep
   - cd ../stage
   - cp terraform.tfvars.example terraform.tfvars
-  - /tmp/terraform get 
-  - /tmp/terraform init 
+  - /tmp/terraform get
+  - /tmp/terraform init
   - /tmp/terraform validate stage
-  - /tmp/tflint --deep 
+  - /tmp/tflint --deep
   - ansible-lint ansible/playbooks/site.yml
 
 notifications:
