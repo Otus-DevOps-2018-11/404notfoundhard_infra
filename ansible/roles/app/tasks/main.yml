@@ -3,15 +3,15 @@
 - name: Show info about the env this host to belongs to
   debug:
     msg: "This host is in {{ env }}"
-  
+
 - name: Add unit file for Puma
   copy:
     src: puma.service
     dest: /etc/systemd/system/puma.service
-    
+
 - name: enable puma
-  systemd: 
-    name: puma 
+  systemd:
+    name: puma
     enabled: yes
 
 - name: Add config for DB connection
@@ -21,4 +21,3 @@
     owner: gcp_appUser
     group: gcp_appUser
   notify: reload puma
-  
