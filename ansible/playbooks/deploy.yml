@@ -1,4 +1,4 @@
-- name: Deploy app  
+- name: Deploy app
   hosts: app
   gather_facts: false
   tasks:
@@ -7,8 +7,8 @@
         repo: 'https://github.com/express42/reddit.git'
         dest: '/home/gcp_appUser/reddit'
         version: monolith
-      notify: reload puma    
-    
+      notify: reload puma
+
     - name: Bundle install
       bundler:
         state: present

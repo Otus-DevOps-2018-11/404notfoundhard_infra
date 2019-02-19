@@ -27,3 +27,12 @@ variable "db-address" {
 variable "my_ip" {
   description = "allow to connect from my network"
 }
+
+variable "env_tag" {
+  description = "service tag application"
+}
+
+variable "issethttp" {
+  description = "set http-server tag if needed"
+  default = ""
+}

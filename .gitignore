@@ -6,4 +6,5 @@
 .retry
 .vscode
 service-account.json
-
+jdauphant.nginx
+.pre-commit-config.yaml
