@@ -1,5 +1,6 @@
-terraform {
-  backend "gcs" {
-    bucket = "storage-tfstate-stage"
-  }
-}
+# terraform {
+#   backend "gcs" {
+#     bucket = "storage-tfstate"
+#     prefix = "stage"
+#   }
+# }
