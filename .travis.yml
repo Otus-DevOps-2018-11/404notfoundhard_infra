@@ -14,8 +14,8 @@ script:
   - unzip -o /tmp/terraform.zip -d /tmp
   - unzip -o /tmp/tflint.zip -d /tmp
   - ls -la
-  - /tmp/packer validate -var-file=packer/variables packer/app.json
-  - /tmp/packer validate -var-file=packer/variables packer/db.json
+  - /tmp/packer validate -var-file=packer/variables.json packer/app.json
+  - /tmp/packer validate -var-file=packer/variables.json packer/db.json
   - terraform get terraform/prod
   - terraform init terraform/prod
   - terraform validate terraform/prod
