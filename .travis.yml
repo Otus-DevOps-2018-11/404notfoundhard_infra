@@ -10,9 +10,9 @@ script:
   - wget https://releases.hashicorp.com/terraform/0.11.11/terraform_0.11.11_linux_amd64.zip -O /tmp/terraform.zip
   - wget https://github.com/wata727/tflint/releases/download/v0.7.3/tflint_linux_amd64.zip -O /tmp/tflint.zip
   - pip install ansible-lint --user
-  - unzip /tmp/packer.zip
-  - unzip /tmp/terrafrom.zip
-  - unzip /tmp/tflint.zip
+  - unzip -o /tmp/packer.zip -d /tmp
+  - unzip -o /tmp/terraform.zip -d /tmp
+  - unzip -o /tmp/tflint.zip -d /tmp
   - /tmp/packer validate -var-file=packer/variables packer/app.json
   - /tmp/packer validate -var-file=packer/variables packer/db.json
   - terraform get terraform/prod
