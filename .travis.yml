@@ -13,7 +13,7 @@ script:
   - unzip -o /tmp/packer.zip -d /tmp
   - unzip -o /tmp/terraform.zip -d /tmp
   - unzip -o /tmp/tflint.zip -d /tmp
-  - ssh-keygen -f ~/.ssh/appuser -q -N "
+  - ssh-keygen -f ~/.ssh/appuser -q -N ""
   - /tmp/packer validate -var-file=packer/variables.json.example packer/app.json
   - /tmp/packer validate -var-file=packer/variables.json.example packer/db.json
   - cd terraform/prod
