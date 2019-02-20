@@ -3,7 +3,9 @@
 *.tfstate.backup
 *.tfvars
 .terraform/
-.retry
+*.retry
+variables.json
+gce_googlecompute.pem
 .vscode
 service-account.json
 jdauphant.nginx

@@ -2,23 +2,5 @@
   become: true
   hosts: all
   gather_facts: false
-  tasks:
-    - name: Install apt key
-      apt_key:
-        keyserver: keyserver.ubuntu.com
-        id: EA312927
-        state: present
-    - name: Add mongod repository
-      apt_repository:
-        repo: deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse
-        state: present
-        filename: mongod
-    - name: Install mongod
-      apt:
-        state: present
-        name: mongodb-org
-        update_cache: yes
-    - name: Enable mongod unit
-      systemd:
-        name: mongod
-        enabled: yes
+  roles:
+    - db
